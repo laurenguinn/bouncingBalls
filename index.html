@@ -1,0 +1,231 @@
+ <div></div>
+
+<script>
+
+function createBall(i) {
+  var width = window.innerWidth;
+    var height = window.innerHeight;
+    var x = Math.floor(Math.random()*width);
+    var y = Math.floor(Math.random()*height);
+    if (x>(width-50)) x = width - 50;
+    if (y>(height-50)) y = height - 50;
+
+    // random color
+    var r = Math.floor(255*(Math.random()));
+    var g = Math.floor(255*(Math.random()));
+    var b = Math.floor(255*(Math.random()));        
+    var color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+
+    var ballWidth = Math.floor(Math.random() * Math.floor(200));
+    
+
+    // set div attributes
+    var div = document.createElement('div');
+    div.id = 'ball' + i;
+    div.style.zIndex = '1';
+    div.style.position = 'absolute';    
+    div.style.left = x + 'px';    
+    div.style.top = y + 'px';    
+    div.style.width = ballWidth + 'px';    
+    div.style.height = ballWidth + 'px';    
+    div.style.borderRadius = '50%';
+    div.style.background = color;    
+
+    // Then append the whole thing onto the body
+    document.getElementsByTagName('body')[0].appendChild(div);
+
+    // default start position
+    div.x = x;
+    div.y = y;
+    return div;        
+
+}
+
+
+var velocityX = Math.floor(Math.random() * Math.floor(40));
+var velocityY = Math.floor(Math.random() * Math.floor(40));
+var positionX = 0;
+var positionY = 0;
+
+var velocityX2 = Math.floor(Math.random() * Math.floor(10));
+var velocityY2 = Math.floor(Math.random() * Math.floor(15));
+var positionX2 = 0;
+var positionY2 = 0;
+
+var velocityX3 = Math.floor(Math.random() * Math.floor(20));
+var velocityY3 = Math.floor(Math.random() * Math.floor(10));
+var positionX3 = 0;
+var positionY3 = 0;
+
+var velocityX4 = Math.floor(Math.random() * Math.floor(50));
+var velocityY4 = Math.floor(Math.random() * Math.floor(50));
+var positionX4 = 0;
+var positionY4 = 0;
+
+var velocityX5 = Math.floor(Math.random() * Math.floor(60));
+var velocityY5= Math.floor(Math.random() * Math.floor(60));
+var positionX5 = 0;
+var positionY5 = 0;
+
+var maxX = window.innerWidth;
+var minX = 0;
+var maxY = window.innerHeight;
+var minY = 0;
+
+var ballArray = [];
+
+
+
+for (i = 0; i < 5; i++) {
+   var ball = createBall(i);
+   ballArray.push(ball);
+}
+
+
+var length = ballArray.length;
+function generateRandomColor()    {
+    var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+    return randomColor;
+    //random color will be freshly served
+}
+
+function changeBackground() {
+  var r = Math.floor(255*(Math.random()));
+  var g = Math.floor(255*(Math.random()));
+  var b = Math.floor(255*(Math.random()));        
+  var color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+  document.body.style.backgroundColor =  color;
+
+
+  ballArray[0].style.background = generateRandomColor();
+  ballArray[1].style.background = generateRandomColor();
+  ballArray[2].style.background = generateRandomColor();
+  ballArray[3].style.background = generateRandomColor();
+  ballArray[4].style.background = generateRandomColor();
+    
+}
+
+setInterval(changeBackground, 3000);
+
+setInterval(function(ball, ball2, ball3, ball4, ball5) {
+  
+  var positionX = parseInt(ball.style.left);
+  var positionY = parseInt(ball.style.top);
+
+  if (positionX <= maxX && positionX >= minX) {
+    positionX += velocityX;
+    ball.style.left = positionX + 'px';
+  }
+  else {
+    velocityX = -velocityX;
+    positionX += velocityX;
+    ball.style.left = positionX + 'px'; 
+  }
+
+  if (positionY <= maxY && positionY >= minY) {
+    positionY += velocityY;
+    ball.style.top = positionY + 'px';
+  }
+  else { 
+    velocityY = -velocityY;
+    positionY += velocityY;
+    ball.style.top = positionY + 'px';
+  }
+  
+  var positionX2 = parseInt(ball2.style.left);
+  var positionY2 = parseInt(ball2.style.top);
+  
+  if (positionX2 <= maxX && positionX2 >= minX) {
+    positionX2 += velocityX2;
+    ball2.style.left = positionX2 + 'px';
+  }
+  else {
+    velocityX2 = -velocityX2;
+    positionX2 += velocityX2;
+    ball2.style.left = positionX2 + 'px'; 
+  }
+
+  if (positionY2 <= maxY && positionY2 >= minY) {
+    positionY2 += velocityY2;
+    ball2.style.top = positionY2 + 'px';
+  }
+  else { 
+    velocityY2 = -velocityY2;
+    positionY2 += velocityY2;
+    ball2.style.top = positionY2 + 'px';
+  }
+  
+  var positionX3 = parseInt(ball3.style.left);
+  var positionY3 = parseInt(ball3.style.top);
+  
+  if (positionX3 <= maxX && positionX3>= minX) {
+    positionX3 += velocityX3;
+    ball3.style.left = positionX3 + 'px';
+  }
+  else {
+    velocityX3 = -velocityX3;
+    positionX3 += velocityX3;
+    ball3.style.left = positionX3 + 'px'; 
+  }
+
+  if (positionY3 <= maxY && positionY3 >= minY) {
+    positionY3 += velocityY3;
+    ball3.style.top = positionY3 + 'px';
+  }
+  else { 
+    velocityY3 = -velocityY3;
+    positionY3 += velocityY3;
+    ball3.style.top = positionY3 + 'px';
+  }
+  
+  var positionX4 = parseInt(ball4.style.left);
+  var positionY4 = parseInt(ball4.style.top);
+  
+  if (positionX4 <= maxX && positionX4>= minX) {
+    positionX4 += velocityX4;
+    ball4.style.left = positionX4 + 'px';
+  }
+  else {
+    velocityX4 = -velocityX4;
+    positionX4 += velocityX4;
+    ball4.style.left = positionX4 + 'px'; 
+  }
+
+  if (positionY4 <= maxY && positionY4 >= minY) {
+    positionY4 += velocityY4;
+    ball4.style.top = positionY4 + 'px';
+  }
+  else { 
+    velocityY4 = -velocityY4;
+    positionY4 += velocityY4;
+    ball4.style.top = positionY4 + 'px';
+  }
+  
+  var positionX5 = parseInt(ball5.style.left);
+  var positionY5 = parseInt(ball5.style.top);
+
+  if (positionX5 <= maxX && positionX5 >= minX) {
+    positionX5 += velocityX5;
+    ball5.style.left = positionX5 + 'px';
+  }
+  else {
+    velocityX5 = -velocityX5;
+    positionX5 += velocityX5;
+    ball5.style.left = positionX5 + 'px'; 
+  }
+
+  if (positionY5 <= maxY && positionY5 >= minY) {
+    positionY5 += velocityY5;
+    ball5.style.top = positionY5 + 'px';
+  }
+  else { 
+    velocityY5 = -velocityY5;
+    positionY5 += velocityY5;
+    ball5.style.top = positionY5 + 'px';
+  }
+  
+}, 30, ballArray[0], ballArray[1], ballArray[2], ballArray[3], ballArray[4]);
+
+
+
+</script>
